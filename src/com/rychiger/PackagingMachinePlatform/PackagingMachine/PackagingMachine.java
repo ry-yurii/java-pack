@@ -7,6 +7,10 @@ public abstract class PackagingMachine  {
     private MachineEnumStatus machineEnumStatus;
     public static int totalMachineCount = 0;
 
+    public int getMachineNumber(){
+        return machineNumber;
+    }
+
     public PackagingMachine(String machineName, int machineNumber, MachineEnumStatus machineEnumStatus) {
         this.machineName = machineName;
         this.machineNumber = machineNumber;
@@ -17,9 +21,16 @@ public abstract class PackagingMachine  {
         machineNumber = 0;
         machineEnumStatus = MachineEnumStatus.IDLE;
     }
-    // Define an abstract method startMachine() that must be implemented by the concrete machine classes.
+    // Define an ***abstract __requirements changed -- method startMachine() that must be implemented by the concrete machine classes.
     public MachineEnumStatus startMachine(){
         machineEnumStatus = MachineEnumStatus.RUNNING;
+        System.out.println("Machine starting...");
+        return machineEnumStatus;
+    }
+    // If you have time, add a stopMachine() method to the PackagingMachine class, which works similarly to startMachine(), but stops the machine.
+    public MachineEnumStatus stopMachine(){
+        machineEnumStatus = MachineEnumStatus.IDLE;
+        System.out.println("Machine stopping...");
         return machineEnumStatus;
     }
 }
