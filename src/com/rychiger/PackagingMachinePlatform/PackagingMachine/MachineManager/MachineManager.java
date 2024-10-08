@@ -3,12 +3,13 @@ package com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineManager;
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.PackagingMachine;
 import java.util.ArrayList;
 
-// Implement a Singleton for MachineManager, which is responsible for managing all packaging machines.
+
 public class MachineManager {
-    // The MachineManager should contain a list of packaging machines and provide methods for adding and removing machines.
-    public ArrayList<PackagingMachine> packageMachineList = new ArrayList<PackagingMachine>();
+    private ArrayList<PackagingMachine> machines = new ArrayList<PackagingMachine>();
     private static MachineManager instance = null;
-    private MachineManager() {}
+
+    private MachineManager() {
+    }
 
     public static MachineManager getInstance() {
         if (instance == null) {
@@ -17,20 +18,65 @@ public class MachineManager {
         return instance;
     }
 
-    //The MachineManager should contain a list of packaging machines and provide methods for adding and removing machines.
-    public void addMachine(PackagingMachine packagingMachine) {
-        packagingMachine.totalMachineCount++;
-        packageMachineList.add(packagingMachine);
+    public String getMachineNames() { //TO CHECK NOT SURE
+        ArrayList<String> machinenames = new ArrayList<String>();
+        for (PackagingMachine machine : machines) {
+            machinenames.add(machine.getMachineName());
+        }
+        return machinenames.toString();
     }
-    //The MachineManager should contain a list of packaging machines and provide methods for adding and removing machines.
-    public void removeMachine() {
-        PackagingMachine packagingMachine = packageMachineList.remove(-1);
-        packagingMachine.totalMachineCount -= 1;
+
+    public void addMachine(PackagingMachine machine) {
+        machines.add(machine);
     }
-    // The MachineManager should have a method startAllMachines() that starts each machine in the list.
+
+    public void removeMachineByName(String machineName) {
+        ArrayList<Integer> lstRemove = new ArrayList<Integer>();
+
+        for(int i=0; i < machines.size(); i++){
+            PackagingMachine machine = machines.get(i);
+            if(machine.getMachineName().equals(machineName)){
+                lstRemove.add(i);
+                System.out.print("Found, index: " + i);
+            }
+        }
+        if(!lstRemove.isEmpty()){
+            for(Integer i : lstRemove){
+                machines.remove(i);
+            }
+        }
+    }
+
     public void startAllMachines() {
-        for (PackagingMachine machine : packageMachineList) {
+        for (PackagingMachine machine : machines) {
             machine.startMachine();
         }
+        System.out.println("All machines started successfully");
+    }
+
+    public void stopAllMachines() {
+        for (PackagingMachine machine : machines) {
+            machine.stopMachine();
+        }
+        System.out.println("All machines stopped successfully");
+    }
+
+    public void printMachineCount() {
+        System.out.println("Total machine count = " + PackagingMachine.getTotalMachineCount());
+        System.out.println("Size of ArrayList = " + machines.size());
+    }
+
+    public void loadAllRecipes() {
+        for (PackagingMachine machine : machines) {
+            machine.loadRecipe();
+        }
+        System.out.println("All Recipes loaded successfully");
+    }
+
+    public void saveAllRecipes() {
+        for (PackagingMachine machine : machines) {
+            machine.saveRecipe();
+        }
+        System.out.println("All Recipes saved successfully");
     }
 }

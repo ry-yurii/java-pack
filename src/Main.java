@@ -1,32 +1,31 @@
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.CartoningMachineFactory;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.FillerMachineFactory;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.MachineTypes.CartoningMachine;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.MachineTypes.FillerMachine;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.PackMachineFactory;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.PackagingMachineFactory;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.PackageMachine;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.PackagingMachine;
-
-import java.util.ArrayList;
+import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineManager.MachineManager;
 
 public class Main {
-    public static void main(String[] args) {
-//        FillerMachineFactory fillerMachineFactory = new FillerMachineFactory(); //filler factory created
-//        PackageMachine fillerMachine = fillerMachineFactory.create(); //object created
+//    public static void recursiveFunction(int n){
+//        if (n != 0) {
+//            System.out.println("dive " + n);
+//            recursiveFunction(n - 1);
+//            System.out.println("get up " + n);
+//        }
+//    }
+    //    public static int recursiveMultiplication(int value, int multiplier) { //next step
+//        //not allowed to use *, for, while, or do-while loops
+//        // recursiveMultiplication(10,6);
+//        if (multiplier != 0){
+//            recursiveMultiplication(
+//            value, multiplier - 1);
 //
-//        CartoningMachineFactory cartoningMachineFactory = new CartoningMachineFactory(); //cartoning factory created
-//        PackageMachine cartoningMachine = cartoningMachineFactory.create(); //object created
+//        }
+//    }
 
-        ArrayList<PackageMachine> machineList= new ArrayList<>();
+    public static void main(String[] args) {
+//        *   Instantiate the `MachineManager` and add various machines to it.
 
-        PackMachineFactory factory = new PackMachineFactory();
+//        *   Load and save a recipe using the `RecipeManagement` interface.
 
-        machineList.add(factory.getCartooningMachine());
-        machineList.add(factory.getFillerMachine());
-        machineList.add(factory.getCartooningMachine());
-        machineList.add(new CartoningMachine());
+//        *   Start all machines via the `MachineManager`.
+MachineManager.getInstance().printMachineCount();
+//        *   Output the total number of created machines using the static variable.
 
-
-        machineList.forEach(machine -> machine.startMachine());
     }
 }

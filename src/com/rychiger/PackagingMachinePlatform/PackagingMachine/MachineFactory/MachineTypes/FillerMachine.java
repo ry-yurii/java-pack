@@ -1,27 +1,32 @@
 package com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.MachineTypes;
 
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineEnumStatus;
-import com.rychiger.PackagingMachinePlatform.PackagingMachine.PackageMachine;
+import com.rychiger.PackagingMachinePlatform.PackagingMachine.Enums.MachineEnumStatus;
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.PackagingMachine;
 
-public class FillerMachine implements PackageMachine {
-//    public int weightInGrams;
-//    public int count;
-
+public class FillerMachine extends PackagingMachine {
+    public FillerMachine(String machineName, int machineNumber){
+        super(machineName, machineNumber);
+    }
 
     @Override
     public void startMachine() {
-        System.out.println("Filler machine is running now");
+        setMachineEnumStatus(MachineEnumStatus.RUNNING);
+        System.out.println(this.getClass().getSimpleName()  + " named - " + super.getMachineName() + " is running now");
     }
-//    @Override
-//    public MachineEnumStatus startMachine(){
-//        System.out.println("Filler machine is running now");
-//        return super.startMachine();
-//    }
-//
-//    @Override
-//    public MachineEnumStatus stopMachine(){
-//        System.out.println("Filler machine is stopping now");
-//        return super.stopMachine();
-//    }
+
+    @Override
+    public void stopMachine() {
+        setMachineEnumStatus(MachineEnumStatus.STOPPED);
+        System.out.println(this.getClass().getSimpleName() + " named - " + super.getMachineName() + " is stopped now");
+    }
+
+    @Override
+    public void loadRecipe(){
+        System.out.println(this.getClass().getSimpleName() + " named - " + super.getMachineName() + " Recipe loaded successfully");
+    }
+
+    @Override
+    public void saveRecipe(){
+        System.out.println(this.getClass().getSimpleName() + " named - " + super.getMachineName() + " Recipe saved successfully");
+    }
 }

@@ -4,6 +4,8 @@
 
 In this exercise, you will use the OOP concepts you have learned to create a structure for this platform.
 
+[UML Class diagram](https://miro.com/app/board/uXjVLXC5MCo=/?share_link_id=374161635551)
+
 * * *
 
 **Requirements**

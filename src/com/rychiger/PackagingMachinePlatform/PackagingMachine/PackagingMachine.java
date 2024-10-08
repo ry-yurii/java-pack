@@ -1,37 +1,49 @@
 package com.rychiger.PackagingMachinePlatform.PackagingMachine;
-//Create an abstract class PackagingMachine that defines general properties and methods for different machines.
-public abstract class PackagingMachine  {
-    //This class should have properties such as machineName (String), machineNumber (int), and status (String, e.g., "IDLE", "RUNNING", "ERROR").
+
+import com.rychiger.PackagingMachinePlatform.PackagingMachine.RecipeManagement.RecipeManagement;
+import com.rychiger.PackagingMachinePlatform.PackagingMachine.Enums.MachineEnumStatus;
+
+public abstract class PackagingMachine implements RecipeManagement {
+
     private String machineName;
     private int machineNumber;
     private MachineEnumStatus machineEnumStatus;
-    public static int totalMachineCount = 0;
+    private static int totalMachineCount;
+
+    public PackagingMachine(String machineName, int machineNumber) {
+        this.machineName = machineName;
+        this.machineNumber = machineNumber;
+        machineEnumStatus = MachineEnumStatus.IDLE;
+        totalMachineCount++;
+    }
+
+    public PackagingMachine() {
+        this("Packaging machine", 0);
+    }
+
+    public void setMachineEnumStatus(MachineEnumStatus machineEnumStatus) {
+        this.machineEnumStatus = machineEnumStatus;
+    }
+
+    private MachineEnumStatus checkStatus(){
+        return machineEnumStatus;
+    }
+
+    public static int getTotalMachineCount(){
+        return totalMachineCount;
+    }
+
+    public String getMachineName(){
+        return machineName;
+    }
 
     public int getMachineNumber(){
         return machineNumber;
     }
 
-    public PackagingMachine(String machineName, int machineNumber, MachineEnumStatus machineEnumStatus) {
-        this.machineName = machineName;
-        this.machineNumber = machineNumber;
-        this.machineEnumStatus = machineEnumStatus;
-    }
+    public abstract void startMachine();
+    public abstract void stopMachine();
+    public abstract void loadRecipe();
+    public abstract void saveRecipe();
 
-    public PackagingMachine() {
-        machineName = "Packaging machine";
-        machineNumber = 0;
-        machineEnumStatus = MachineEnumStatus.IDLE;
-    }
-    // Define an ***abstract __requirements changed -- method startMachine() that must be implemented by the concrete machine classes.
-    public MachineEnumStatus startMachine(){
-        machineEnumStatus = MachineEnumStatus.RUNNING;
-        System.out.println(this.getClass().getSimpleName() + " starting...");
-        return machineEnumStatus;
-    }
-    // If you have time, add a stopMachine() method to the PackagingMachine class, which works similarly to startMachine(), but stops the machine.
-    public MachineEnumStatus stopMachine(){
-        machineEnumStatus = MachineEnumStatus.IDLE;
-        System.out.println(this.getClass().getSimpleName() + " starting...");
-        return machineEnumStatus;
-    }
 }
