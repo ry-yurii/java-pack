@@ -3,16 +3,25 @@ package com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory;
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.Enums.MachineEnumType;
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.MachineTypes.CartoningMachine;
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.MachineTypes.FillerMachine;
+import com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.MachineTypes.SealingMachine;
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.PackagingMachine;
 
 public class MachineFactory {
-    public PackagingMachine getMachine(MachineEnumType machineType, String machineName, int machineNumber) throws Exception {
-        switch (machineType){
+    public static PackagingMachine getMachine(MachineEnumType machineType, String machineName, int machineNumber) throws Exception {
+        PackagingMachine machine = null;
+        switch (machineType) {
             case fillerMachine:
-                return new FillerMachine(machineName, machineNumber);
+                machine = new FillerMachine(machineName, machineNumber);
+                break;
             case cartoningMachine:
-                return new CartoningMachine(machineName, machineNumber);
-            default: throw new Exception();
+                machine = new CartoningMachine(machineName, machineNumber);
+                break;
+            case sealingMachine:
+                machine = new SealingMachine(machineName, machineNumber);
+                break;
+            default:
+                throw new Exception();
         }
+        return machine;
     }
 }

@@ -58,7 +58,7 @@ public class MachineManager {
         for (PackagingMachine machine : machines) {
             machine.stopMachine();
         }
-        System.out.println("All machines stopped successfully");
+        System.out.println("All machines stopped successfully!");
     }
 
     public void printMachineCount() {

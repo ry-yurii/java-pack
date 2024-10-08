@@ -1,17 +1,17 @@
 package com.rychiger.PackagingMachinePlatform.PackagingMachine.MachineFactory.MachineTypes;
+
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.Enums.MachineEnumStatus;
 import com.rychiger.PackagingMachinePlatform.PackagingMachine.PackagingMachine;
 
-// Create two concrete classes that inherit from PackagingMachine:
-public class CartoningMachine extends PackagingMachine {
-
-    public CartoningMachine(String machineName, int machineNumber){
+public class SealingMachine extends PackagingMachine {
+    public SealingMachine(String machineName, int machineNumber){
         super(machineName, machineNumber);
     }
+
     @Override
     public void startMachine() {
         setMachineEnumStatus(MachineEnumStatus.RUNNING);
-        System.out.println(this.getClass().getSimpleName() + " named - " + super.getMachineName() + " is running now");
+        System.out.println(this.getClass().getSimpleName()  + " named - " + super.getMachineName() + " is running now");
     }
 
     @Override
