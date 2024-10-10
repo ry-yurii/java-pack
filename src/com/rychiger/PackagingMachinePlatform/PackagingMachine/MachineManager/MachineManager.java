@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class MachineManager {
-    private ArrayList<PackagingMachine> machines = new ArrayList<PackagingMachine>();
+    private ArrayList<PackagingMachine> machines = new ArrayList<>();
     private static MachineManager instance = null;
 
     private MachineManager() {
@@ -19,7 +19,7 @@ public class MachineManager {
     }
 
     public String getMachineNames() { //TO CHECK NOT SURE
-        ArrayList<String> machinenames = new ArrayList<String>();
+        ArrayList<String> machinenames = new ArrayList<>();
         for (PackagingMachine machine : machines) {
             machinenames.add(machine.getMachineName());
         }
@@ -31,20 +31,7 @@ public class MachineManager {
     }
 
     public void removeMachineByName(String machineName) {
-        ArrayList<Integer> lstRemove = new ArrayList<Integer>();
-
-        for(int i=0; i < machines.size(); i++){
-            PackagingMachine machine = machines.get(i);
-            if(machine.getMachineName().equals(machineName)){
-                lstRemove.add(i);
-                System.out.print("Found, index: " + i);
-            }
-        }
-        if(!lstRemove.isEmpty()){
-            for(Integer i : lstRemove){
-                machines.remove(i);
-            }
-        }
+        machines.removeIf(machine -> machine.getMachineName().equals(machineName));
     }
 
     public void startAllMachines() {
